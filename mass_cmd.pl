@@ -1,4 +1,4 @@
-weechat::register("mass_cmd", "voldenet", "0.1", "GPL3", "/mass_cmd /anything {nick}", "", "");
+weechat::register("mass_cmd", "voldenet", "0.1", "Whatever", "/mass_cmd /anything {nick}", "", "");
 weechat::hook_command("mass_cmd", "", "", "", "", "mass_cmd", "");
 
 sub foreach_infolist($$$&) {
