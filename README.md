@@ -3,7 +3,12 @@ Some scripts for weechat
 
 - [inlinemote.pl](inlinemote.pl)
   - allows you to use inline text (mostly used for emotes) replacements in weechat and adds autocompletion
-  
+  - lists of emotes are saved as `plugins.var.perl.inlinemote.emotes` which allows you to share your emotes without much hassle
+  - current defaults are
+    - :c ┐(￣ー￣)┌
+    - :g ( ¬‿¬)
+    - :s ┐(´～`；)┌
+    - :i （´_ゝ`)
 - [mass_cmd.pl](mass_cmd.pl)
   - gives you an ability to invoke a command for all nicks in buffer:
     - `/mass_cmd hello, {nick}`
