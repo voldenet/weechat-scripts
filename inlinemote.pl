@@ -169,7 +169,7 @@ sub set { weechat::config_set_plugin($_[0], $_[1]); }
 package ie;
 my $SCRIPT_NAME = "inlinemote";
 my $PLUGIN_PREFIX = "plugins.var.perl.".$SCRIPT_NAME;
-weechat::register($SCRIPT_NAME, "voldenet", "0.1", "GPL3", "replaces inline strings with given replacements", "", "");
+weechat::register($SCRIPT_NAME, "voldenet", "0.1", "Whatever", "replaces inline strings with given replacements", "", "");
 weechat::hook_command("ie", "<action> <text> <replacement>", qq {
 add {text} {replacement} - adds a replacement
 remove {text} - removes given replacement if it exists
