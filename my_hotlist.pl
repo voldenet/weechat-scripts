@@ -1,4 +1,4 @@
-weechat::register("my_hotlist","","0.1","GPL3","","","");
+weechat::register("my_hotlist","voldenet","0.1","GPL3","","","");
 weechat::hook_signal("hotlist_changed", "hotlist_changed", "");
 sub hotlist_changed { weechat::bar_item_update('my_hotlist'); }
 weechat::bar_item_new('(extra)my_hotlist', "my_hotlist_render", "");
