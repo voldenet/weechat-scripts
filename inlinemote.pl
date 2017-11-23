@@ -3,7 +3,7 @@ package emotes;
 my %emotes = ();
 my $regex = "";
 sub init {
-  wee::default("emotes", ":c=┐(￣ー￣)┌ :g=(\\s¬‿¬) :s=┐(´～`；)┌ :i=（´_ゝ`)");
+  wee::default("emotes", ":whatever=¯\\_(ツ)_/¯ :yay=(ﾉ´ｰ`)ﾉ :indifferent=（´_ゝ`) :c=┐(￣ー￣)┌ :g=(\\s¬‿¬) :s=┐(´～`；)┌ :i=（´_ゝ`)");
   reload();
 }
 
