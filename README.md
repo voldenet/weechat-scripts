@@ -5,7 +5,7 @@ Some scripts for weechat
   - allows you to use inline text (mostly used for emotes) replacements in weechat and adds autocompletion
   - lists of emotes are saved as `plugins.var.perl.inlinemote.emotes` which allows you to share your emotes without much hassle
   - current defaults are
-    - :whatever ¯\\_(ツ)_/¯
+    - :whatever ¯\\\_(ツ)\_/¯
     - :yay (ﾉ´ｰ`)ﾉ
     - :indifferent （´_ゝ`) 
     - :c ┐(￣ー￣)┌
