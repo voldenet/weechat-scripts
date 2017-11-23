@@ -12,6 +12,13 @@ Some scripts for weechat
     - :g ( ¬‿¬)
     - :s ┐(´～`；)┌
     - :i （´_ゝ`)
+    
+  You can easily add, list and remove combinations:
+  `/ie list` - lists all emotes in the buffer
+  `/ie add _x :-)` - adds a replacement _x, the emoticon can contain spaces
+  `/ie remove _x` - removes replacement _x
+  `/ie on` - enables replacements
+  `/ie off` - disables replacements
 - [mass_cmd.pl](mass_cmd.pl)
   - gives you an ability to invoke a command for all nicks in buffer:
     - `/mass_cmd hello, {nick}`
