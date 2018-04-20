@@ -205,7 +205,7 @@ sub input {
 
 sub load {
   my ($buffer, $fn) = @_;
-  open my $h, '<', $fn or die "Unable to open >$fn: $!";
+  open my $h, '<', $fn or die "Unable to open $fn for reading: $!\n";
   while(<$h>) {
     emotes::add $1, $2 if /^(\S+) (.*)$/;
   }
@@ -216,7 +216,7 @@ sub load {
 sub save {
   my ($buffer, $force, $fn) = @_;
   die "file $fn exists and force wasn't used" unless $force or not -e $fn;
-  open my $h, '>', $fn;
+  open my $h, '>', $fn or die "Unable to open $fn for writing: $!\n";
   my %el = %{emotes::get()};
   for(keys %el) {
     print $h $_.' '.$el{$_}."\n";
