@@ -3,7 +3,7 @@ package emotes;
 my %emotes = ();
 my $regex = "";
 sub init {
-  wee::default("emotes", ":whatever=¯\\_(ツ)_/¯ :yay=(ﾉ´ｰ`)ﾉ :indifferent=（´_ゝ`) :c=┐(￣ー￣)┌ :g=(\\s¬‿¬) :s=┐(´～`；)┌ :i=（´_ゝ`)");
+  wee::default("emotes", ":c=┐(￣ー￣)┌ :g=(\\s¬‿¬) :s=┐(´～`；)┌ :i=（´_ゝ`)");
   reload();
 }
 
@@ -170,12 +170,17 @@ package ie;
 my $SCRIPT_NAME = "inlinemote";
 my $PLUGIN_PREFIX = "plugins.var.perl.".$SCRIPT_NAME;
 weechat::register($SCRIPT_NAME, "voldenet", "0.1", "Whatever", "replaces inline strings with given replacements", "", "");
-weechat::hook_command("ie", "<action> <text> <replacement>", qq {
+weechat::hook_command("ie", "<action> <text|file> <replacement>", qq {
+{text} can be anything, but it must not contain spaces
+
 add {text} {replacement} - adds a replacement
 remove {text} - removes given replacement if it exists
 list - lists the replacements in current buffer
 on - enables the inline replacement (default)
 off - disables the inline replacement
+load {file} - loads emotes from a file
+save {file} - stores emotes to a file
+save -f {file} - stores emotes to a file, forces overwrite if file exists
 }, "", "", "ie::manage", "");
 weechat::hook_modifier("input_text_for_buffer", "ie::input", "");
 weechat::hook_config($PLUGIN_PREFIX.".*", "ie::reload", "");
@@ -198,6 +203,28 @@ sub input {
   return $string;
 }
 
+sub load {
+  my ($buffer, $fn) = @_;
+  open my $h, '<', $fn or die "Unable to open >$fn: $!";
+  while(<$h>) {
+    emotes::add $1, $2 if /^(\S+) (.*)$/;
+  }
+  weechat::print($buffer, "[inlinemote]\tloading from file ".$fn." completed");
+  close $h;
+}
+
+sub save {
+  my ($buffer, $force, $fn) = @_;
+  die "file $fn exists and force wasn't used" unless $force or not -e $fn;
+  open my $h, '>', $fn;
+  my %el = %{emotes::get()};
+  for(keys %el) {
+    print $h $_.' '.$el{$_}."\n";
+  }
+  weechat::print($buffer, "[inlinemote]\tsaving to file ".$fn." completed");
+  close $h;
+}
+
 sub manage {
   my($data, $buffer, $args) = @_;
   if($args =~ /^on/) {
@@ -211,6 +238,12 @@ sub manage {
   }
   if($args =~ /^add (\S+) (.*)$/) {
     emotes::add($1, $2);
+  }
+  if($args =~ /^save (?:-(\S+)\s+)?(.+)$/) {
+    save($buffer, ($1 || '') eq 'f', $2);
+  }
+  if($args =~ /^load (.+)$/) {
+    load($buffer, $1);
   }
   if($args =~ /^list$/) {
     my %el = %{emotes::get()};
